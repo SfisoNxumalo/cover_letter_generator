@@ -5,9 +5,9 @@ import { generateCoverLetter } from './services/coverLetterService';
 
 export default function App() {
   const [file, setFile] = useState<File | null>(null);
-  const [jobDescription, setJobDescription] = useState('');
-  const [result, setResult] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [jobDescription, setJobDescription] = useState<string>('');
+  const [result, setResult] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
     if (!file || !jobDescription) return alert('Please upload a CV and enter a job description.');

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Container, Title, Textarea, Button, FileInput, Text, Loader } from '@mantine/core';
-import axios from 'axios';
 import '@mantine/core/styles.css';
+import { generateCoverLetter } from './services/coverLetterService';
 
 export default function App() {
   const [file, setFile] = useState<File | null>(null);
@@ -17,16 +17,12 @@ export default function App() {
     formData.append('jobDescription', jobDescription);
 
     setLoading(true);
+
     try {
-      const res = await axios.post('http://localhost:8000/api/generate', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      setResult(res.data.coverLetter);
-    } catch (err) {
-      console.error(err);
-      alert('Error generating cover letter.');
-    } finally {
-      setLoading(false);
+      const result = await generateCoverLetter(formData);
+      setResult(result);
+    } catch {
+      alert("Failed to generate cover letter.");
     }
   };
 

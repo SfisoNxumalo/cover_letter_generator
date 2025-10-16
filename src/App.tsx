@@ -4,7 +4,7 @@ import axios from 'axios';
 import '@mantine/core/styles.css';
 
 export default function App() {
-  const [file] = useState(null);
+  const [file, setFile] = useState<File | null>(null);
   const [jobDescription, setJobDescription] = useState('');
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ export default function App() {
 
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:8000/api/generate-cover-letter', formData, {
+      const res = await axios.post('http://localhost:8000/api/generate', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setResult(res.data.coverLetter);
@@ -36,7 +36,7 @@ export default function App() {
       <FileInput
         label="Upload your CV (PDF)"
         placeholder="Select file"
-        // onChange={setFile}
+        onChange={setFile}
         accept="application/pdf"
         mt="md"
       />

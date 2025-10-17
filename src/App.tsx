@@ -22,7 +22,11 @@ export default function App() {
       const result = await generateCoverLetter(formData);
       setResult(result);
     } catch {
+
       alert("Failed to generate cover letter.");
+    }
+    finally{
+      setLoading(false);
     }
   };
 

@@ -1,3 +1,3 @@
-const baseUrl:string = "http://localhost:8000/api/v1"
+const baseUrl:string = "https://cover-letter-generator-backend-theu.onrender.com/api/v1"
 
 export const generateCoverLetterEndpoint:string = `${baseUrl}/generate`
